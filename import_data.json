@@ -1,0 +1,2207 @@
+{
+  "exercises": [
+    {
+      "id": "ex_1",
+      "name": "Back Extension",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_2",
+      "name": "Hip Thrust",
+      "cues": [],
+      "defaultPerHand": true
+    },
+    {
+      "id": "ex_3",
+      "name": "Step-Up",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_4",
+      "name": "Reverse Lunge",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_5",
+      "name": "RDL",
+      "cues": [],
+      "defaultPerHand": true
+    },
+    {
+      "id": "ex_6",
+      "name": "Sumo Squat",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_7",
+      "name": "Hip Abduction (Leaning Forward)",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_8",
+      "name": "Hip Abduction (Upright)",
+      "cues": [],
+      "defaultPerHand": false
+    },
+    {
+      "id": "ex_9",
+      "name": "Hip Abduction (Leaning Back)",
+      "cues": [],
+      "defaultPerHand": false
+    }
+  ],
+  "workouts": [
+    {
+      "id": "w_2025-04-02",
+      "date": "2025-04-02",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_1",
+              "weight": 10.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1743552000000
+            },
+            {
+              "id": "s_2",
+              "weight": 10.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1743552001000
+            },
+            {
+              "id": "s_3",
+              "weight": 10.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1743552002000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_4",
+              "weight": 100,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1743552003000
+            },
+            {
+              "id": "s_5",
+              "weight": 100,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1743552004000
+            },
+            {
+              "id": "s_6",
+              "weight": 100,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1743552005000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-04-07",
+      "date": "2025-04-07",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_7",
+              "weight": 15.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1744060800000
+            },
+            {
+              "id": "s_8",
+              "weight": 15.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1744060801000
+            },
+            {
+              "id": "s_9",
+              "weight": 15.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1744060802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_10",
+              "weight": 100,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1744060803000
+            },
+            {
+              "id": "s_11",
+              "weight": 100,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1744060804000
+            },
+            {
+              "id": "s_12",
+              "weight": 100,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1744060805000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-04-14",
+      "date": "2025-04-14",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_13",
+              "weight": 15.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1744665600000
+            },
+            {
+              "id": "s_14",
+              "weight": 15.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1744665601000
+            },
+            {
+              "id": "s_15",
+              "weight": 15.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1744665602000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_16",
+              "weight": 100,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1744665603000
+            },
+            {
+              "id": "s_17",
+              "weight": 100,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1744665604000
+            },
+            {
+              "id": "s_18",
+              "weight": 100,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1744665605000
+            },
+            {
+              "id": "s_19",
+              "weight": 100,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1744665606000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_3",
+          "sets": [
+            {
+              "id": "s_20",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1744665607000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-04-21",
+      "date": "2025-04-21",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_21",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1745270400000
+            },
+            {
+              "id": "s_22",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1745270401000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_23",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1745270402000
+            },
+            {
+              "id": "s_24",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1745270403000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_25",
+              "weight": 20.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1745270404000
+            },
+            {
+              "id": "s_26",
+              "weight": 20.0,
+              "reps": 7,
+              "isPerHand": true,
+              "timestamp": 1745270405000
+            },
+            {
+              "id": "s_27",
+              "weight": 20.0,
+              "reps": 6,
+              "isPerHand": true,
+              "timestamp": 1745270406000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-05-12",
+      "date": "2025-05-12",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_28",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008000000
+            },
+            {
+              "id": "s_29",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008001000
+            },
+            {
+              "id": "s_30",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008002000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_31",
+              "weight": 85,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008003000
+            },
+            {
+              "id": "s_32",
+              "weight": 85,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008004000
+            },
+            {
+              "id": "s_33",
+              "weight": 70,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1747008005000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_34",
+              "weight": 25.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1747008006000
+            },
+            {
+              "id": "s_35",
+              "weight": 25.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1747008007000
+            },
+            {
+              "id": "s_36",
+              "weight": 25.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1747008008000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-05-19",
+      "date": "2025-05-19",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_37",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1747612800000
+            },
+            {
+              "id": "s_38",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1747612801000
+            },
+            {
+              "id": "s_39",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1747612802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_40",
+              "weight": 70,
+              "reps": 2,
+              "isPerHand": false,
+              "timestamp": 1747612803000
+            },
+            {
+              "id": "s_41",
+              "weight": 70,
+              "reps": 2,
+              "isPerHand": false,
+              "timestamp": 1747612804000
+            },
+            {
+              "id": "s_42",
+              "weight": 70,
+              "reps": 2,
+              "isPerHand": false,
+              "timestamp": 1747612805000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_43",
+              "weight": 130,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1747612806000
+            },
+            {
+              "id": "s_44",
+              "weight": 130,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1747612807000
+            },
+            {
+              "id": "s_45",
+              "weight": 130,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1747612808000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-05-26",
+      "date": "2025-05-26",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_46",
+              "weight": 35.0,
+              "reps": 13,
+              "isPerHand": true,
+              "timestamp": 1748217600000
+            },
+            {
+              "id": "s_47",
+              "weight": 35.0,
+              "reps": 13,
+              "isPerHand": true,
+              "timestamp": 1748217601000
+            },
+            {
+              "id": "s_48",
+              "weight": 35.0,
+              "reps": 15,
+              "isPerHand": true,
+              "timestamp": 1748217602000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_3",
+          "sets": [
+            {
+              "id": "s_49",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1748217603000
+            },
+            {
+              "id": "s_50",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1748217604000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_51",
+              "weight": 130,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1748217605000
+            },
+            {
+              "id": "s_52",
+              "weight": 130,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1748217606000
+            },
+            {
+              "id": "s_53",
+              "weight": 130,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1748217607000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-06-02",
+      "date": "2025-06-02",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_54",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1748908800000
+            },
+            {
+              "id": "s_55",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1748908801000
+            },
+            {
+              "id": "s_56",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1748908802000
+            }
+          ]
+        }
+      ],
+      "notes": "DELOAD WEEK"
+    },
+    {
+      "id": "w_2025-06-09",
+      "date": "2025-06-09",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_57",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1749427200000
+            },
+            {
+              "id": "s_58",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1749427201000
+            },
+            {
+              "id": "s_59",
+              "weight": 40.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1749427202000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_60",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1749427203000
+            },
+            {
+              "id": "s_61",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1749427204000
+            },
+            {
+              "id": "s_62",
+              "weight": 115,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1749427205000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_63",
+              "weight": 85,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1749427206000
+            },
+            {
+              "id": "s_64",
+              "weight": 85,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1749427207000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-06-16",
+      "date": "2025-06-16",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_65",
+              "weight": 40.0,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1750032000000
+            },
+            {
+              "id": "s_66",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1750032001000
+            },
+            {
+              "id": "s_67",
+              "weight": 40.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1750032002000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_68",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1750032003000
+            },
+            {
+              "id": "s_69",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1750032004000
+            },
+            {
+              "id": "s_70",
+              "weight": 115,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1750032005000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-06-24",
+      "date": "2025-06-24",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_71",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1750636800000
+            },
+            {
+              "id": "s_72",
+              "weight": 130,
+              "reps": 11,
+              "isPerHand": false,
+              "timestamp": 1750636801000
+            },
+            {
+              "id": "s_73",
+              "weight": 130,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1750636802000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-07-01",
+      "date": "2025-07-01",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_74",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1751241600000
+            },
+            {
+              "id": "s_75",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1751241601000
+            },
+            {
+              "id": "s_76",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1751241602000
+            }
+          ]
+        }
+      ],
+      "notes": "Felt like wasn't getting full extension"
+    },
+    {
+      "id": "w_2025-07-07",
+      "date": "2025-07-07",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_77",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1751846400000
+            },
+            {
+              "id": "s_78",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1751846401000
+            },
+            {
+              "id": "s_79",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1751846402000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-07-21",
+      "date": "2025-07-21",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_80",
+              "weight": 50.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1753056000000
+            },
+            {
+              "id": "s_81",
+              "weight": 50.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1753056001000
+            },
+            {
+              "id": "s_82",
+              "weight": 50.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1753056002000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-07-28",
+      "date": "2025-07-28",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_83",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1722124800000
+            },
+            {
+              "id": "s_84",
+              "weight": 145,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1722124801000
+            },
+            {
+              "id": "s_85",
+              "weight": 145,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1722124802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_86",
+              "weight": 50.0,
+              "reps": 5,
+              "isPerHand": true,
+              "timestamp": 1722124803000
+            }
+          ]
+        }
+      ],
+      "notes": "got full extension"
+    },
+    {
+      "id": "w_2025-08-01",
+      "date": "2025-08-01",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_87",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1722470400000
+            },
+            {
+              "id": "s_88",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1722470401000
+            },
+            {
+              "id": "s_89",
+              "weight": 145,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1722470402000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-08-27",
+      "date": "2025-08-27",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_90",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1724716800000
+            },
+            {
+              "id": "s_91",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1724716801000
+            },
+            {
+              "id": "s_92",
+              "weight": 145,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1724716802000
+            }
+          ]
+        }
+      ],
+      "notes": "barely and bad form on second set"
+    },
+    {
+      "id": "w_2025-09-01",
+      "date": "2025-09-01",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_93",
+              "weight": 145,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1725148800000
+            },
+            {
+              "id": "s_94",
+              "weight": 145,
+              "reps": 11,
+              "isPerHand": false,
+              "timestamp": 1725148801000
+            },
+            {
+              "id": "s_95",
+              "weight": 145,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1725148802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_96",
+              "weight": 160,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1725148803000
+            },
+            {
+              "id": "s_97",
+              "weight": 160,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1725148804000
+            },
+            {
+              "id": "s_98",
+              "weight": 160,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1725148805000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-09-08",
+      "date": "2025-09-08",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_99",
+              "weight": 35.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1725753600000
+            },
+            {
+              "id": "s_100",
+              "weight": 35.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1725753601000
+            },
+            {
+              "id": "s_101",
+              "weight": 35.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1725753602000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-09-10",
+      "date": "2025-09-10",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_102",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1725926400000
+            },
+            {
+              "id": "s_103",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1725926401000
+            },
+            {
+              "id": "s_104",
+              "weight": 40.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1725926402000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-09-24",
+      "date": "2025-09-24",
+      "exercises": [
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_105",
+              "weight": 160,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1727136000000
+            },
+            {
+              "id": "s_106",
+              "weight": 160,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1727136001000
+            },
+            {
+              "id": "s_107",
+              "weight": 160,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1727136002000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-10-29",
+      "date": "2025-10-29",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_108",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1727568000000
+            },
+            {
+              "id": "s_109",
+              "weight": 35.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1727568001000
+            },
+            {
+              "id": "s_110",
+              "weight": 35.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1727568002000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_111",
+              "weight": 145,
+              "reps": 8,
+              "isPerHand": false,
+              "timestamp": 1727568003000
+            },
+            {
+              "id": "s_112",
+              "weight": 145,
+              "reps": 6,
+              "isPerHand": false,
+              "timestamp": 1727568004000
+            },
+            {
+              "id": "s_113",
+              "weight": 145,
+              "reps": 7,
+              "isPerHand": false,
+              "timestamp": 1727568005000
+            }
+          ]
+        }
+      ],
+      "notes": "Each was to failure"
+    },
+    {
+      "id": "w_2025-11-04",
+      "date": "2025-11-04",
+      "exercises": [
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_114",
+              "weight": 20.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678400000
+            },
+            {
+              "id": "s_115",
+              "weight": 20.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678401000
+            },
+            {
+              "id": "s_116",
+              "weight": 20.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678402000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_4",
+          "sets": [
+            {
+              "id": "s_117",
+              "weight": 10,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1730678403000
+            },
+            {
+              "id": "s_118",
+              "weight": 10,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1730678404000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_6",
+          "sets": [
+            {
+              "id": "s_119",
+              "weight": 20,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1730678405000
+            },
+            {
+              "id": "s_120",
+              "weight": 20,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1730678406000
+            },
+            {
+              "id": "s_121",
+              "weight": 20,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1730678407000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_3",
+          "sets": [
+            {
+              "id": "s_122",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1730678408000
+            },
+            {
+              "id": "s_123",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1730678409000
+            },
+            {
+              "id": "s_124",
+              "weight": 0,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1730678410000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_125",
+              "weight": 25.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678411000
+            },
+            {
+              "id": "s_126",
+              "weight": 25.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678412000
+            },
+            {
+              "id": "s_127",
+              "weight": 25.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1730678413000
+            }
+          ]
+        }
+      ],
+      "notes": "did at the end and was too tired"
+    },
+    {
+      "id": "w_2025-11-10",
+      "date": "2025-11-10",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_128",
+              "weight": 40.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731283200000
+            },
+            {
+              "id": "s_129",
+              "weight": 40.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1731283201000
+            },
+            {
+              "id": "s_130",
+              "weight": 40.0,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1731283202000
+            },
+            {
+              "id": "s_131",
+              "weight": 40.0,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1731283203000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_132",
+              "weight": 10.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731283204000
+            },
+            {
+              "id": "s_133",
+              "weight": 10.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731283205000
+            },
+            {
+              "id": "s_134",
+              "weight": 10.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731283206000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_4",
+          "sets": [
+            {
+              "id": "s_135",
+              "weight": 10,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283207000
+            },
+            {
+              "id": "s_136",
+              "weight": 15,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283208000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_6",
+          "sets": [
+            {
+              "id": "s_137",
+              "weight": 22.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283209000
+            },
+            {
+              "id": "s_138",
+              "weight": 22.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283210000
+            },
+            {
+              "id": "s_139",
+              "weight": 22.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283211000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_140",
+              "weight": 100,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1731283212000
+            },
+            {
+              "id": "s_141",
+              "weight": 115,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1731283213000
+            },
+            {
+              "id": "s_142",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731283214000
+            },
+            {
+              "id": "s_143",
+              "weight": 115,
+              "reps": 11,
+              "isPerHand": false,
+              "timestamp": 1731283215000
+            }
+          ]
+        }
+      ],
+      "notes": "Hamstrings held me back in the last set"
+    },
+    {
+      "id": "w_2025-11-14",
+      "date": "2025-11-14",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_144",
+              "weight": 45.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1731628800000
+            },
+            {
+              "id": "s_145",
+              "weight": 45.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1731628801000
+            },
+            {
+              "id": "s_146",
+              "weight": 45.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1731628802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_147",
+              "weight": 17.5,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731628803000
+            },
+            {
+              "id": "s_148",
+              "weight": 17.5,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731628804000
+            },
+            {
+              "id": "s_149",
+              "weight": 17.5,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731628805000
+            }
+          ]
+        }
+      ],
+      "notes": "Bend knees and then think of it more like a squat. Feet further apart. Dont worry about thrusting just come up don't be afraid to use legs"
+    },
+    {
+      "id": "w_2025-11-17",
+      "date": "2025-11-17",
+      "exercises": [
+        {
+          "exerciseId": "ex_1",
+          "sets": [
+            {
+              "id": "s_150",
+              "weight": 25,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801600000
+            },
+            {
+              "id": "s_151",
+              "weight": 25,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801601000
+            },
+            {
+              "id": "s_152",
+              "weight": 25,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801602000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_153",
+              "weight": 45.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1731801603000
+            },
+            {
+              "id": "s_154",
+              "weight": 45.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1731801604000
+            },
+            {
+              "id": "s_155",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1731801605000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_6",
+          "sets": [
+            {
+              "id": "s_156",
+              "weight": 27.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801606000
+            },
+            {
+              "id": "s_157",
+              "weight": 27.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801607000
+            },
+            {
+              "id": "s_158",
+              "weight": 27.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801608000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_159",
+              "weight": 115,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1731801609000
+            },
+            {
+              "id": "s_160",
+              "weight": 115,
+              "reps": 14,
+              "isPerHand": false,
+              "timestamp": 1731801610000
+            },
+            {
+              "id": "s_161",
+              "weight": 115,
+              "reps": 13,
+              "isPerHand": false,
+              "timestamp": 1731801611000
+            },
+            {
+              "id": "s_162",
+              "weight": 115,
+              "reps": 11,
+              "isPerHand": false,
+              "timestamp": 1731801612000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_163",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801613000
+            },
+            {
+              "id": "s_164",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1731801614000
+            }
+          ]
+        }
+      ],
+      "notes": "First set was good then ow felt all in the back"
+    },
+    {
+      "id": "w_2025-11-21",
+      "date": "2025-11-21",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_165",
+              "weight": 45.0,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1732147200000
+            },
+            {
+              "id": "s_166",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1732147201000
+            },
+            {
+              "id": "s_167",
+              "weight": 45.0,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1732147202000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_168",
+              "weight": 130,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1732147203000
+            },
+            {
+              "id": "s_169",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1732147204000
+            },
+            {
+              "id": "s_170",
+              "weight": 130,
+              "reps": 9,
+              "isPerHand": false,
+              "timestamp": 1732147205000
+            }
+          ]
+        }
+      ],
+      "notes": "not as finisher"
+    },
+    {
+      "id": "w_2025-12-03",
+      "date": "2025-12-03",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_171",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184000000
+            },
+            {
+              "id": "s_172",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184001000
+            },
+            {
+              "id": "s_173",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184002000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_174",
+              "weight": 20.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184003000
+            },
+            {
+              "id": "s_175",
+              "weight": 20.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184004000
+            },
+            {
+              "id": "s_176",
+              "weight": 20.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1733184005000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_177",
+              "weight": 130,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733184006000
+            },
+            {
+              "id": "s_178",
+              "weight": 130,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1733184007000
+            },
+            {
+              "id": "s_179",
+              "weight": 130,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1733184008000
+            }
+          ]
+        }
+      ],
+      "notes": "FINALLY FELT THE LAST SET IN MY GLUTES! Go to the bottom and then dip slightly further. Like your bobbing through the whole thing not doing reps"
+    },
+    {
+      "id": "w_2025-12-07",
+      "date": "2025-12-07",
+      "exercises": [
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_180",
+              "weight": 20.0,
+              "reps": 15,
+              "isPerHand": true,
+              "timestamp": 1733529600000
+            },
+            {
+              "id": "s_181",
+              "weight": 20.0,
+              "reps": 15,
+              "isPerHand": true,
+              "timestamp": 1733529601000
+            },
+            {
+              "id": "s_182",
+              "weight": 20.0,
+              "reps": 15,
+              "isPerHand": true,
+              "timestamp": 1733529602000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_1",
+          "sets": [
+            {
+              "id": "s_183",
+              "weight": 0,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1733529603000
+            },
+            {
+              "id": "s_184",
+              "weight": 10,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1733529604000
+            },
+            {
+              "id": "s_185",
+              "weight": 25,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733529605000
+            },
+            {
+              "id": "s_186",
+              "weight": 25,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733529606000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-12-10",
+      "date": "2025-12-10",
+      "exercises": [
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_187",
+              "weight": 22.5,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1733788800000
+            },
+            {
+              "id": "s_188",
+              "weight": 22.5,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1733788801000
+            },
+            {
+              "id": "s_189",
+              "weight": 22.5,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1733788802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_4",
+          "sets": [
+            {
+              "id": "s_190",
+              "weight": 12.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788803000
+            },
+            {
+              "id": "s_191",
+              "weight": 12.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788804000
+            },
+            {
+              "id": "s_192",
+              "weight": 12.5,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788805000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_193",
+              "weight": 115,
+              "reps": 14,
+              "isPerHand": false,
+              "timestamp": 1733788806000
+            },
+            {
+              "id": "s_194",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788807000
+            },
+            {
+              "id": "s_195",
+              "weight": 115,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788808000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_9",
+          "sets": [
+            {
+              "id": "s_196",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1733788809000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-12-13",
+      "date": "2025-12-13",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_197",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1734048000000
+            },
+            {
+              "id": "s_198",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1734048001000
+            },
+            {
+              "id": "s_199",
+              "weight": 35.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1734048002000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_2025-12-15",
+      "date": "2025-12-15",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_200",
+              "weight": 45.0,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1734220800000
+            },
+            {
+              "id": "s_201",
+              "weight": 45.0,
+              "reps": 12,
+              "isPerHand": true,
+              "timestamp": 1734220801000
+            },
+            {
+              "id": "s_202",
+              "weight": 45.0,
+              "reps": 9,
+              "isPerHand": true,
+              "timestamp": 1734220802000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_203",
+              "weight": 22.5,
+              "reps": 11,
+              "isPerHand": true,
+              "timestamp": 1734220803000
+            },
+            {
+              "id": "s_204",
+              "weight": 22.5,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1734220804000
+            },
+            {
+              "id": "s_205",
+              "weight": 22.5,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1734220805000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_4",
+          "sets": [
+            {
+              "id": "s_206",
+              "weight": 15,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1734220806000
+            },
+            {
+              "id": "s_207",
+              "weight": 15,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1734220807000
+            },
+            {
+              "id": "s_208",
+              "weight": 15,
+              "reps": 10,
+              "isPerHand": false,
+              "timestamp": 1734220808000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_209",
+              "weight": 100,
+              "reps": 20,
+              "isPerHand": false,
+              "timestamp": 1734220809000
+            },
+            {
+              "id": "s_210",
+              "weight": 100,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1734220810000
+            },
+            {
+              "id": "s_211",
+              "weight": 100,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1734220811000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_8",
+          "sets": [
+            {
+              "id": "s_212",
+              "weight": 85,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1734220812000
+            },
+            {
+              "id": "s_213",
+              "weight": 85,
+              "reps": 12,
+              "isPerHand": false,
+              "timestamp": 1734220813000
+            }
+          ]
+        }
+      ],
+      "notes": "Some back pain"
+    },
+    {
+      "id": "w_2025-12-17",
+      "date": "2025-12-17",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "s_214",
+              "weight": 50.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1734393600000
+            },
+            {
+              "id": "s_215",
+              "weight": 50.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1734393601000
+            },
+            {
+              "id": "s_216",
+              "weight": 50.0,
+              "reps": 8,
+              "isPerHand": true,
+              "timestamp": 1734393602000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_7",
+          "sets": [
+            {
+              "id": "s_217",
+              "weight": 115,
+              "reps": 15,
+              "isPerHand": false,
+              "timestamp": 1734393603000
+            },
+            {
+              "id": "s_218",
+              "weight": 115,
+              "reps": 16,
+              "isPerHand": false,
+              "timestamp": 1734393604000
+            },
+            {
+              "id": "s_219",
+              "weight": 115,
+              "reps": 16,
+              "isPerHand": false,
+              "timestamp": 1734393605000
+            }
+          ]
+        },
+        {
+          "exerciseId": "ex_5",
+          "sets": [
+            {
+              "id": "s_220",
+              "weight": 25.0,
+              "reps": 6,
+              "isPerHand": true,
+              "timestamp": 1734393606000
+            },
+            {
+              "id": "s_221",
+              "weight": 25.0,
+              "reps": 6,
+              "isPerHand": true,
+              "timestamp": 1734393607000
+            }
+          ]
+        }
+      ],
+      "notes": "Bend knees when at bottom = more glute burn pretty good"
+    }
+  ],
+  "settings": {
+    "preferredUnit": "lb",
+    "theme": "default"
+  }
+}
