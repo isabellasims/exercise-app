@@ -4,7 +4,7 @@ import { getRecommendation } from '../utils/progression';
 import { Exercise, LiftSet, Workout } from '../types';
 import { formatLocalDate, getTodayDateString } from '../utils/dateFormat';
 // TODO - HISTORY DEFAULT VIEW SHOULD BE THE SEE ALL VIEW.
-// CLICKING THE SEE ALL VIEW SHOULD TAKE YOU TO A VIEW SIMILAR TO THE HISTORY VIEW. JUST FOR THAT SPECIFIC EXERCISE.
+// TODO CLICKING THE SEE ALL VIEW SHOULD TAKE YOU TO A VIEW SIMILAR TO THE HISTORY VIEW. JUST FOR THAT SPECIFIC EXERCISE.
 interface Props {
   exerciseId: string;
   onFinish: () => void;

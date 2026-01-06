@@ -4,7 +4,7 @@ import WorkoutLogger from './components/WorkoutLogger';
 import ExerciseSelector from './components/ExerciseSelector';
 import Settings from './components/Settings';
 import History from './components/History';
-import WorkoutDetail from './components/WorkoutDetail';
+import PreviousSessionDetail from './components/PreviousSessionDetail';
 import Routines from './components/Routines';
 import RoutineDetail from './components/RoutineDetail';
 import RoutineEditor from './components/RoutineEditor';
@@ -17,7 +17,7 @@ type View =
   | 'logger'
   | 'settings'
   | 'history'
-  | 'workout-detail'
+  | 'previous-session-detail'
   | 'routines'
   | 'routine-detail'
   | 'routine-editor';
@@ -26,17 +26,29 @@ function App() {
   const [view, setView] = useState<View>('home');
 
   const [selectedExerciseId, setSelectedExerciseId] = useState<string | null>(null);
-  const [selectedWorkoutId, setSelectedWorkoutId] = useState<string | null>(null);
+  const [selectedPreviousSessionId, setSelectedPreviousSessionId] = useState<string | null>(null);
   const [selectedRoutineId, setSelectedRoutineId] = useState<string | null>(null);
 
   const [homeRefreshKey, setHomeRefreshKey] = useState(0);
 
-  /**
-   * One-step-back model:
-   * - When you navigate to a new view (non-settings), you set `backTargetRef` to the current view.
-   * - Settings behaves like a modal: it uses a separate return ref and does NOT mutate backTargetRef.
-   */
-  const backTargetRef = useRef<View>('home');
+  // Explicit parent-child relationships for navigation
+  // Each view knows its logical parent
+  const viewParents: Record<View, View | null> = {
+    'home': null, // Root view, no parent
+    'exercise-selector': 'home',
+    'logger': 'exercise-selector', // Can also come from routine-detail, handled below
+    'history': 'home',
+    'previous-session-detail': 'history', // Can also come from home, handled below
+    'routines': 'home',
+    'routine-detail': 'routines',
+    'routine-editor': 'routines', // Can also come from routine-detail, handled below
+    'settings': null, // Modal, uses separate return ref
+  };
+
+  // Track where we came from for views that can have multiple parents
+  const loggerSourceRef = useRef<View>('exercise-selector');
+  const previousSessionSourceRef = useRef<View>('history');
+  const routineEditorSourceRef = useRef<View>('routines');
   const settingsReturnRef = useRef<View>('home');
 
   // Apply theme on app load
@@ -46,42 +58,60 @@ function App() {
     applyTheme(theme);
   }, []);
 
-  // Helper: navigate with one-step-back semantics (excluding settings)
+  // Helper: navigate to a view, tracking source for multi-parent views
   const go = (next: View) => {
-    backTargetRef.current = view;
+    // Track source for views that can come from multiple places
+    if (next === 'logger') {
+      loggerSourceRef.current = view;
+    } else if (next === 'previous-session-detail') {
+      previousSessionSourceRef.current = view;
+    } else if (next === 'routine-editor') {
+      routineEditorSourceRef.current = view;
+    }
     setView(next);
   };
 
-  // Helper: open settings without disturbing back target
+  // Helper: open settings without disturbing navigation
   const openSettings = () => {
     settingsReturnRef.current = view;
     setView('settings');
   };
 
-  // Helper: top-bar back
+  // Helper: get the parent view for the current view
+  const getParentView = (currentView: View): View | null => {
+    if (currentView === 'settings') {
+      return settingsReturnRef.current;
+    }
+    
+    // Handle views with multiple possible parents
+    if (currentView === 'logger') {
+      return loggerSourceRef.current;
+    }
+    if (currentView === 'previous-session-detail') {
+      return previousSessionSourceRef.current;
+    }
+    if (currentView === 'routine-editor') {
+      return routineEditorSourceRef.current;
+    }
+    
+    // Default: use the parent mapping
+    return viewParents[currentView];
+  };
+
+  // Helper: top-bar back - always goes to logical parent
   const topBack = () => {
-    if (view === 'settings') {
-      setView(settingsReturnRef.current);
-      return;
+    const parent = getParentView(view);
+    if (parent) {
+      setView(parent);
+    } else {
+      // Fallback to home if no parent (shouldn't happen)
+      setView('home');
     }
-
-    // Optional: if you want logger-back to also restore selector's back to home (same as your old logic)
-    if (view === 'logger' && backTargetRef.current === 'exercise-selector') {
-      console.log('IN LOGGER');
-      // After returning to selector, pressing back should go home
-      // (because selector itself was reached from home in your main flow)
-      backTargetRef.current = 'home';
-      setView('exercise-selector');
-      return;
-    }
-
-    setView(backTargetRef.current);
   };
 
   const handleWorkoutFinished = () => {
     setHomeRefreshKey((prev) => prev + 1);
-    // Finishing is a "reset" in most apps: send to home and make home the back target.
-    backTargetRef.current = 'home';
+    // Finishing workout returns to home
     setView('home');
   };
 
@@ -166,9 +196,8 @@ function App() {
               go('routines');
             }}
             onViewWorkout={(workoutId) => {
-              setSelectedWorkoutId(workoutId);
-              go('workout-detail'); // ✅ back target becomes 'home' automatically
-              console.log('IN WORKOUT DETAIL');
+              setSelectedPreviousSessionId(workoutId);
+              go('previous-session-detail'); // ✅ back target becomes 'home' automatically
             }}
           />
         )}
@@ -197,14 +226,14 @@ function App() {
           <History
             onBack={topBack}
             onViewWorkout={(workoutId) => {
-              setSelectedWorkoutId(workoutId);
-              go('workout-detail'); // ✅ back target becomes 'history'
+              setSelectedPreviousSessionId(workoutId);
+              go('previous-session-detail'); // ✅ back target becomes 'history'
             }}
           />
         )}
 
-        {view === 'workout-detail' && selectedWorkoutId && (
-          <WorkoutDetail workoutId={selectedWorkoutId} onBack={topBack} />
+        {view === 'previous-session-detail' && selectedPreviousSessionId && (
+          <PreviousSessionDetail workoutId={selectedPreviousSessionId} onBack={topBack} />
         )}
 
         {view === 'routines' && (

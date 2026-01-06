@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getWorkouts, getExercises } from '../storage';
 import { formatLocalDate } from '../utils/dateFormat';
-// TODO - CHANGE RECENT HISTORY TO SAY "Recent Sessions"
 interface Props {
   onStartWorkout: () => void;
   onViewHistory: () => void;
@@ -74,7 +73,7 @@ const Home: React.FC<Props> = ({ onStartWorkout, onViewHistory, onViewRoutines, 
       {recentWorkouts.length > 0 ? (
         <section>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: '700' }}>Recent History</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: '700' }}>Recent Sessions</h3>
             <span
               className="muted"
               style={{ fontSize: '0.85rem', cursor: 'pointer' }}

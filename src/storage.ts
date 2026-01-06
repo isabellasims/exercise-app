@@ -106,3 +106,16 @@ export const deleteRoutine = (routineId: string) => {
   saveData(data);
 };
 
+export const deleteExercise = (exerciseId: string) => {
+  const data = loadData();
+  data.exercises = data.exercises.filter(e => e.id !== exerciseId);
+  // Also remove this exercise from any routines that reference it
+  if (data.routines) {
+    data.routines = data.routines.map(routine => ({
+      ...routine,
+      exerciseIds: routine.exerciseIds.filter(id => id !== exerciseId)
+    }));
+  }
+  saveData(data);
+};
+

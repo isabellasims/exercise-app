@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getExercises, updateExercise } from '../storage';
+import { getExercises, updateExercise, deleteExercise } from '../storage';
 import { Exercise } from '../types';
 // VIEW FOR ALL EXERCISES IN APP. ALLOWS CREATION AND SELECTION OF EXERCISES.
-// TODO - ADD DELETION OF EXERCISES. SHOULD HAVE ARE YOU SURE MODAL BEFORE DELETION.
-// TODO - CLICKING BACK BUTTON FROM NEW EXERCISE SHOULD RETURN TO EXERCISE SELECTOR VIEW, NOT HOME
 interface Props {
   onSelect: (id: string) => void;
   onBack: () => void;
@@ -59,6 +57,13 @@ const ExerciseSelector: React.FC<Props> = ({ onSelect, onBack }) => {
     setEditName('');
   };
 
+  const handleDelete = (exerciseId: string, exerciseName: string) => {
+    if (window.confirm(`Are you sure you want to delete "${exerciseName}"? This will also remove it from any routines.`)) {
+      deleteExercise(exerciseId);
+      setExercises(getExercises());
+    }
+  };
+
   if (isAdding) {
     return (
       <div className="card">
@@ -88,6 +93,11 @@ const ExerciseSelector: React.FC<Props> = ({ onSelect, onBack }) => {
           </button>
           <button onClick={handleCreate} disabled={!newName.trim()} style={{ width: 'auto' }}>
             Create
+          </button>
+        </div>
+        <div style={{ marginTop: '16px' }}>
+          <button className="secondary" onClick={() => setIsAdding(false)} style={{ width: '100%' }}>
+            ← Back to Exercises
           </button>
         </div>
       </div>
@@ -192,6 +202,41 @@ const ExerciseSelector: React.FC<Props> = ({ onSelect, onBack }) => {
                     }}
                   >
                     Edit
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(exercise.id, exercise.name);
+                    }}
+                    style={{
+                      width: 'auto',
+                      padding: '6px 8px',
+                      fontSize: '1rem',
+                      background: 'transparent',
+                      color: 'var(--text-secondary)',
+                      border: 'none',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#ff453a';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--text-secondary)';
+                    }}
+                    title="Delete exercise"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                      <line x1="10" y1="11" x2="10" y2="17"></line>
+                      <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
                   </button>
                   <div
                     style={{ color: 'var(--accent)', cursor: 'pointer' }}

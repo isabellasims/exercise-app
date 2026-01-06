@@ -44,7 +44,16 @@ const Settings: React.FC<Props> = ({ onBack }) => {
       try {
         const content = e.target?.result as string;
         const data = JSON.parse(content);
+        // Validate that it has the required structure (exercises and workouts are required, routines and settings are optional)
         if (data.exercises && data.workouts) {
+          // Ensure routines and settings exist for backwards compatibility
+          if (!data.routines) data.routines = [];
+          if (!data.settings) {
+            data.settings = {
+              preferredUnit: 'lb',
+              theme: 'default'
+            };
+          }
           saveData(data);
           alert('Data imported successfully!');
           window.location.reload();
