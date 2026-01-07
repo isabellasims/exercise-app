@@ -11,6 +11,8 @@ const Settings: React.FC<Props> = ({ onBack }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const data = loadData();
   const [theme, setTheme] = useState<ThemeMode>(data.settings?.theme ?? 'default');
+  const [showTextImport, setShowTextImport] = useState(false);
+  const [importText, setImportText] = useState('');
 
   // Apply theme when it changes
   useEffect(() => {
@@ -67,6 +69,37 @@ const Settings: React.FC<Props> = ({ onBack }) => {
     reader.readAsText(file);
   };
 
+  const handleImportText = () => {
+    if (!importText.trim()) {
+      alert('Please paste JSON data first.');
+      return;
+    }
+
+    try {
+      const data = JSON.parse(importText);
+      // Validate that it has the required structure (exercises and workouts are required, routines and settings are optional)
+      if (data.exercises && data.workouts) {
+        // Ensure routines and settings exist for backwards compatibility
+        if (!data.routines) data.routines = [];
+        if (!data.settings) {
+          data.settings = {
+            preferredUnit: 'lb',
+            theme: 'default'
+          };
+        }
+        saveData(data);
+        alert('Data imported successfully!');
+        setImportText('');
+        setShowTextImport(false);
+        window.location.reload();
+      } else {
+        alert('Invalid backup data. Expected exercises and workouts.');
+      }
+    } catch (err) {
+      alert('Error parsing JSON. Please check the format.');
+    }
+  };
+
   const handleClearData = () => {
     if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
       const defaultData = {
@@ -111,7 +144,7 @@ const Settings: React.FC<Props> = ({ onBack }) => {
           <button onClick={handleExport} className="secondary">Export Backup (JSON)</button>
           
           <button onClick={() => fileInputRef.current?.click()} className="secondary">
-            Import Backup (JSON)
+            Import from File
           </button>
           <input 
             type="file" 
@@ -120,6 +153,39 @@ const Settings: React.FC<Props> = ({ onBack }) => {
             style={{ display: 'none' }} 
             accept=".json"
           />
+          
+          <button 
+            onClick={() => setShowTextImport(!showTextImport)} 
+            className="secondary"
+          >
+            {showTextImport ? 'Hide Text Import' : 'Import from Text'}
+          </button>
+
+          {showTextImport && (
+            <div style={{ marginTop: '8px' }}>
+              <textarea
+                value={importText}
+                onChange={(e) => setImportText(e.target.value)}
+                placeholder="Paste JSON data here..."
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  border: '1px solid var(--border)',
+                  background: '#2c2c2e',
+                  color: 'white',
+                  fontSize: '0.9rem',
+                  fontFamily: 'monospace',
+                  resize: 'vertical',
+                  marginBottom: '8px'
+                }}
+              />
+              <button onClick={handleImportText} style={{ width: '100%' }}>
+                Import JSON
+              </button>
+            </div>
+          )}
           
           <button 
             onClick={handleClearData} 
