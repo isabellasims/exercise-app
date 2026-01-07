@@ -4,6 +4,7 @@ export interface Exercise {
   cues: string[];
   category?: string;
   defaultPerHand?: boolean; // Remember if user prefers x2 (per-hand) for this exercise
+  notes?: string; // Notes for this exercise (not per-set, but per-exercise)
 }
 
 export interface LiftSet {
@@ -12,6 +13,7 @@ export interface LiftSet {
   reps: number;
   isPerHand: boolean;
   timestamp: number;
+  notes?: string; // Notes for this specific set
 }
 
 export interface WorkoutExercise {

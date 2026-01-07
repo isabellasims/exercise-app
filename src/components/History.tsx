@@ -172,14 +172,16 @@ const History: React.FC<Props> = ({ onBack, onViewWorkout }) => {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {session.sets.map((set, setIdx) => (
-                      <div key={setIdx} style={{ fontSize: '0.9rem' }}>
-                        <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
-                          Set {setIdx + 1}: {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                      <div key={setIdx} style={{ fontSize: '0.9rem', marginBottom: '4px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                          <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
+                            Set {setIdx + 1}:                           {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
                             <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
                           ) : (
                             `${set.weight}lbs`
                           )}
                         </span>
+                        </div>
                       </div>
                     ))}
                   </div>

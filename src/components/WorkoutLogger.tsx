@@ -20,6 +20,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
   const [sets, setSets] = useState<LiftSet[]>([]);
   const [currentWeight, setCurrentWeight] = useState<string>('');
   const [currentReps, setCurrentReps] = useState<string>('');
+  const [exerciseNotes, setExerciseNotes] = useState<string>('');
   const [isPerHand, setIsPerHand] = useState(exercise?.defaultPerHand ?? false);
   const [showCues, setShowCues] = useState(true);
   const [isEditingCues, setIsEditingCues] = useState(false);
@@ -27,16 +28,31 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
   const [hasInitialized, setHasInitialized] = useState(false);
   const [showAllHistory, setShowAllHistory] = useState(true);
   const [selectedDate, setSelectedDate] = useState<string>(getTodayDateString());
+  
+  // Timer state
+  const [timerSeconds, setTimerSeconds] = useState<number>(0);
+  const [timerInterval, setTimerInterval] = useState<number | null>(null);
+  const [timerDuration, setTimerDuration] = useState<number>(90); // Default 90 seconds
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   // Memoize recommendation to avoid unnecessary re-renders/resets
   const recommendation = useMemo(() => 
     exercise ? getRecommendation(exercise, history) : null,
   [exercise, history]);
 
-  // Sync per-hand preference when exercise loads
+  // Get last session's exercise notes
+  const lastSessionNotes = useMemo(() => {
+    if (exercise?.notes) {
+      return exercise.notes;
+    }
+    return null;
+  }, [exercise]);
+
+  // Sync per-hand preference and notes when exercise loads
   useEffect(() => {
     if (exercise) {
       setIsPerHand(exercise.defaultPerHand ?? false);
+      setExerciseNotes(exercise.notes || '');
     }
   }, [exercise]);
 
@@ -48,7 +64,51 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
     setCurrentReps('');
     setShowAllHistory(true); // Default to showing all history when switching exercises
     setSelectedDate(getTodayDateString()); // Reset to today when switching exercises
+    setTimerSeconds(0);
+    if (timerInterval) {
+      window.clearInterval(timerInterval);
+      setTimerInterval(null);
+    }
+    setIsTimerRunning(false);
   }, [exerciseId]);
+
+  // Load existing sets when date changes
+  useEffect(() => {
+    const workouts = getWorkouts();
+    const workoutForDate = workouts.find(w => w.date === selectedDate);
+    if (workoutForDate) {
+      const exerciseData = workoutForDate.exercises.find(ex => ex.exerciseId === exerciseId);
+      if (exerciseData && exerciseData.sets.length > 0) {
+        setSets(exerciseData.sets);
+      } else {
+        setSets([]);
+      }
+    } else {
+      setSets([]);
+    }
+  }, [selectedDate, exerciseId]);
+
+
+
+  // Timer effect
+  useEffect(() => {
+    if (isTimerRunning && timerSeconds > 0) {
+      const interval = window.setInterval(() => {
+        setTimerSeconds(prev => {
+          if (prev <= 1) {
+            setIsTimerRunning(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      setTimerInterval(interval);
+      return () => window.clearInterval(interval);
+    } else if (timerInterval) {
+      window.clearInterval(timerInterval);
+      setTimerInterval(null);
+    }
+  }, [isTimerRunning, timerSeconds]);
 
   // Initialize inputs once when recommendation is available (only on first load for this exercise)
   useEffect(() => {
@@ -95,30 +155,93 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
           }]
         };
         
-        // Check if workout for selected date already exists
+        // Check if workout for selected date already exists (any workout on that date)
         const existingWorkouts = getWorkouts();
-        const existingDateIndex = existingWorkouts.findIndex(w => w.date === workoutDate && w.exercises.some(ex => ex.exerciseId === exerciseId));
+        const existingDateIndex = existingWorkouts.findIndex(w => w.date === workoutDate);
       
       if (existingDateIndex >= 0) {
         // Update existing workout for selected date
         const existing = existingWorkouts[existingDateIndex];
         const exerciseIndex = existing.exercises.findIndex(ex => ex.exerciseId === exerciseId);
         if (exerciseIndex >= 0) {
+          // Exercise already exists in this workout, update its sets
           existing.exercises[exerciseIndex].sets = updatedSets;
         } else {
+          // Exercise doesn't exist yet, add it to the workout
           existing.exercises.push({ exerciseId, sets: updatedSets });
         }
         const data = loadData();
         data.workouts[existingDateIndex] = existing;
         saveData(data);
       } else {
-        // Add new workout
+        // No workout exists for this date, create a new one
         addWorkout(workout);
       }
     }
     
-    // Keep weight and reps for next set (don't clear)
+    // Start timer after logging set
+    setTimerSeconds(timerDuration);
+    setIsTimerRunning(true);
+    
+    // Clear reps, but keep weight for next set
+    setCurrentReps('');
   };
+
+  const handleSaveExerciseNotes = () => {
+    if (exercise) {
+      updateExercise({ ...exercise, notes: exerciseNotes.trim() || undefined });
+    }
+  };
+
+  const handleDeleteSet = (setId: string) => {
+    const updatedSets = sets.filter(s => s.id !== setId);
+    setSets(updatedSets);
+    
+    // Update workout in storage
+    const workoutDate = selectedDate;
+    const existingWorkouts = getWorkouts();
+    const existingDateIndex = existingWorkouts.findIndex(w => w.date === workoutDate && w.exercises.some(ex => ex.exerciseId === exerciseId));
+    
+    if (existingDateIndex >= 0) {
+      const existing = existingWorkouts[existingDateIndex];
+      const exerciseIndex = existing.exercises.findIndex(ex => ex.exerciseId === exerciseId);
+      if (exerciseIndex >= 0) {
+        if (updatedSets.length === 0) {
+          // Remove exercise from workout if no sets left
+          existing.exercises.splice(exerciseIndex, 1);
+          // If no exercises left, delete the entire workout
+          if (existing.exercises.length === 0) {
+            const data = loadData();
+            data.workouts = data.workouts.filter(w => w.id !== existing.id);
+            saveData(data);
+            return;
+          }
+        } else {
+          existing.exercises[exerciseIndex].sets = updatedSets;
+        }
+        const data = loadData();
+        data.workouts[existingDateIndex] = existing;
+        saveData(data);
+      }
+    }
+  };
+
+  const handleStartTimer = () => {
+    setTimerSeconds(timerDuration);
+    setIsTimerRunning(true);
+  };
+
+  const handleStopTimer = () => {
+    setIsTimerRunning(false);
+    setTimerSeconds(0);
+  };
+
+  const formatTimer = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
 
   const handleAddCue = () => {
     if (!newCue.trim()) return;
@@ -185,6 +308,13 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
               `${recommendation.sets[0].weight}lbs`
             )}
           </div>
+          {lastSessionNotes && (
+            <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.8)', fontStyle: 'italic' }}>
+                <span style={{ fontWeight: '600' }}>Last notes:</span> {lastSessionNotes}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -245,8 +375,8 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
         )}
       </div>
 
-      <div className="card" style={{ padding: '24px', borderRadius: '18px', background: 'linear-gradient(135deg, var(--card-bg) 0%, #252528 100%)', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
+      <div className="card" style={{ padding: '20px', borderRadius: '18px', background: 'linear-gradient(135deg, var(--card-bg) 0%, #252528 100%)', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
           <div>
             <label className="muted" style={{ display: 'block', marginBottom: '6px', fontSize: '0.8rem' }}>Weight (lbs)</label>
             <div style={{ position: 'relative' }}>
@@ -288,6 +418,46 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
             />
           </div>
         </div>
+
+        {/* Timer - Compact */}
+        <div style={{ padding: '8px', background: '#2c2c2e', borderRadius: '8px', border: '1px solid var(--border)', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+            <label className="muted" style={{ fontSize: '0.7rem' }}>Timer</label>
+            <input
+              type="number"
+              min="0"
+              max="600"
+              value={Math.floor(timerDuration / 60)}
+              onChange={(e) => setTimerDuration(parseInt(e.target.value) * 60 || 0)}
+              disabled={isTimerRunning}
+              style={{
+                width: '35px',
+                padding: '2px 4px',
+                borderRadius: '4px',
+                border: '1px solid var(--border)',
+                background: isTimerRunning ? '#1a1a1a' : '#2c2c2e',
+                color: 'white',
+                fontSize: '0.75rem',
+                textAlign: 'center'
+              }}
+            />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ fontSize: '1rem', fontWeight: '700', color: timerSeconds > 0 ? (timerSeconds <= 10 ? '#ff453a' : 'var(--accent)') : 'var(--text-secondary)' }}>
+              {formatTimer(timerSeconds)}
+            </div>
+            {isTimerRunning ? (
+              <button onClick={handleStopTimer} style={{ width: 'auto', padding: '4px 8px', fontSize: '0.7rem', background: '#ff453a', borderRadius: '4px' }}>
+                Stop
+              </button>
+            ) : (
+              <button onClick={handleStartTimer} className="secondary" style={{ width: 'auto', padding: '4px 8px', fontSize: '0.7rem', borderRadius: '4px' }}>
+                Start
+              </button>
+            )}
+          </div>
+        </div>
+
         <button onClick={handleAddSet} style={{ 
           background: 'linear-gradient(135deg, var(--accent) 0%, #0056b3 100%)', 
           color: 'white', 
@@ -296,7 +466,8 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
           fontSize: '1.05rem',
           fontWeight: '700',
           boxShadow: '0 4px 12px rgba(10, 132, 255, 0.3)',
-          transition: 'transform 0.1s'
+          transition: 'transform 0.1s',
+          width: '100%'
         }}>Log Set {sets.length + 1}</button>
       </div>
 
@@ -319,7 +490,8 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
                 background: 'linear-gradient(135deg, var(--card-bg) 0%, #252528 100%)', 
                 borderColor: 'var(--border)',
                 borderRadius: '14px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                position: 'relative'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{ 
@@ -338,15 +510,82 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
                   </div>
                   <span style={{ fontWeight: '600', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Set {sets.length - i}</span>
                 </div>
-                <span style={{ fontWeight: '700', fontSize: '1rem' }}>
-                  {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
-                    <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
-                  ) : (
-                    `${set.weight}lbs`
-                  )}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+                  <span style={{ fontWeight: '700', fontSize: '1rem' }}>
+                    {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                      <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
+                    ) : (
+                      `${set.weight}lbs`
+                    )}
+                  </span>
+                  </div>
+                  <button
+                    onClick={() => handleDeleteSet(set.id)}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      padding: '6px',
+                      width: 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#ff453a';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--text-secondary)';
+                    }}
+                    title="Delete set"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                      <line x1="10" y1="11" x2="10" y2="17"></line>
+                      <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                  </button>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Exercise Notes - Under Today's Performance */}
+          <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <label className="muted" style={{ fontSize: '0.9rem', fontWeight: '600' }}>
+                Exercise Notes
+              </label>
+              <button
+                onClick={handleSaveExerciseNotes}
+                className="secondary"
+                style={{ width: 'auto', padding: '6px 12px', fontSize: '0.85rem' }}
+              >
+                Save
+              </button>
+            </div>
+            <textarea
+              value={exerciseNotes}
+              onChange={(e) => setExerciseNotes(e.target.value)}
+              placeholder="Add notes for this exercise..."
+              style={{
+                width: '100%',
+                minHeight: '80px',
+                padding: '12px',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                background: '#2c2c2e',
+                color: 'white',
+                fontSize: '0.9rem',
+                fontFamily: 'inherit',
+                resize: 'vertical'
+              }}
+            />
           </div>
         </div>
       )}
@@ -390,13 +629,15 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
                         <span style={{ fontWeight: '600', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                           Set {i + 1}
                         </span>
-                        <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+                          <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>
                           {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
                             <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
                           ) : (
                             `${set.weight}lbs`
                           )}
                         </span>
+                        </div>
                       </div>
                     ))}
                   </div>
