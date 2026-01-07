@@ -28,6 +28,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
   const [newCue, setNewCue] = useState('');
   const [hasInitialized, setHasInitialized] = useState(false);
   const [showAllHistory, setShowAllHistory] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string>(getTodayDateString());
 
   // Memoize recommendation to avoid unnecessary re-renders/resets
   const recommendation = useMemo(() => 
@@ -48,6 +49,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
     setCurrentWeight('');
     setCurrentReps('');
     setShowAllHistory(false); // Reset history view when switching exercises
+    setSelectedDate(getTodayDateString()); // Reset to today when switching exercises
   }, [exerciseId]);
 
   // Initialize inputs once when recommendation is available (only on first load for this exercise)
@@ -85,23 +87,23 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
     
       // Auto-save workout when a set is added
       if (updatedSets.length > 0) {
-        const today = getTodayDateString();
+        const workoutDate = selectedDate;
         const workout: Workout = {
           id: crypto.randomUUID(),
-          date: today,
+          date: workoutDate,
           exercises: [{
             exerciseId,
             sets: updatedSets
           }]
         };
         
-        // Check if workout for today already exists
+        // Check if workout for selected date already exists
         const existingWorkouts = getWorkouts();
-        const existingTodayIndex = existingWorkouts.findIndex(w => w.date === today && w.exercises.some(ex => ex.exerciseId === exerciseId));
+        const existingDateIndex = existingWorkouts.findIndex(w => w.date === workoutDate && w.exercises.some(ex => ex.exerciseId === exerciseId));
       
-      if (existingTodayIndex >= 0) {
-        // Update existing workout for today
-        const existing = existingWorkouts[existingTodayIndex];
+      if (existingDateIndex >= 0) {
+        // Update existing workout for selected date
+        const existing = existingWorkouts[existingDateIndex];
         const exerciseIndex = existing.exercises.findIndex(ex => ex.exerciseId === exerciseId);
         if (exerciseIndex >= 0) {
           existing.exercises[exerciseIndex].sets = updatedSets;
@@ -109,7 +111,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
           existing.exercises.push({ exerciseId, sets: updatedSets });
         }
         const data = loadData();
-        data.workouts[existingTodayIndex] = existing;
+        data.workouts[existingDateIndex] = existing;
         saveData(data);
       } else {
         // Add new workout
@@ -144,6 +146,27 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
     <div style={{ paddingBottom: '40px' }}>
       <div style={{ marginBottom: '20px' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>{exercise.name}</h2>
+      </div>
+
+      <div className="card" style={{ marginBottom: '20px', padding: '16px' }}>
+        <label className="muted" style={{ display: 'block', marginBottom: '8px', fontSize: '0.85rem' }}>
+          Session Date
+        </label>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          max={getTodayDateString()} // Can't select future dates
+          style={{
+            width: '100%',
+            padding: '10px',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+            background: '#2c2c2e',
+            color: 'white',
+            fontSize: '0.9rem'
+          }}
+        />
       </div>
 
       {recommendation && (
