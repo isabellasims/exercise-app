@@ -10,6 +10,7 @@ interface Props {
 
 const RoutineEditor: React.FC<Props> = ({ routineId, onBack, onSave }) => {
   const [name, setName] = useState('');
+  const [notes, setNotes] = useState('');
   const [selectedExerciseIds, setSelectedExerciseIds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const exercises = getExercises();
@@ -20,6 +21,7 @@ const RoutineEditor: React.FC<Props> = ({ routineId, onBack, onSave }) => {
       const routine = routines.find(r => r.id === routineId);
       if (routine) {
         setName(routine.name);
+        setNotes(routine.notes || '');
         setSelectedExerciseIds([...routine.exerciseIds]);
       }
     }
@@ -61,7 +63,8 @@ const RoutineEditor: React.FC<Props> = ({ routineId, onBack, onSave }) => {
     const routine: Routine = {
       id: routineId || crypto.randomUUID(),
       name: name.trim(),
-      exerciseIds: selectedExerciseIds
+      exerciseIds: selectedExerciseIds,
+      notes: notes.trim() || undefined
     };
 
     if (routineId) {
@@ -98,6 +101,29 @@ const RoutineEditor: React.FC<Props> = ({ routineId, onBack, onSave }) => {
             background: '#2c2c2e',
             color: 'white',
             fontSize: '1rem'
+          }}
+        />
+      </div>
+
+      <div className="card" style={{ marginBottom: '20px' }}>
+        <label className="muted" style={{ display: 'block', marginBottom: '6px', fontSize: '0.85rem' }}>
+          Notes (optional)
+        </label>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          placeholder="Add any notes about this routine..."
+          rows={4}
+          style={{
+            width: '100%',
+            padding: '12px',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+            background: '#2c2c2e',
+            color: 'white',
+            fontSize: '0.9rem',
+            fontFamily: 'inherit',
+            resize: 'vertical'
           }}
         />
       </div>

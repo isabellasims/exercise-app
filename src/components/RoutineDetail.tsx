@@ -50,6 +50,12 @@ const RoutineDetail: React.FC<Props> = ({ routineId, onBack, onEdit, onStartWork
         </button>
       </div>
 
+      {routine.notes && (
+        <div className="card" style={{ marginBottom: '20px', padding: '16px', background: 'var(--accent-soft)' }}>
+          <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', whiteSpace: 'pre-wrap' }}>{routine.notes}</div>
+        </div>
+      )}
+
       {routineExercises.length > 0 ? (
         <>
           <div className="card" style={{ marginBottom: '20px' }}>

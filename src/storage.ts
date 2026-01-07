@@ -52,6 +52,12 @@ export const addWorkout = (workout: Workout) => {
   saveData(data);
 };
 
+export const deleteWorkout = (workoutId: string) => {
+  const data = loadData();
+  data.workouts = data.workouts.filter(w => w.id !== workoutId);
+  saveData(data);
+};
+
 export const updateExercise = (exercise: Exercise) => {
   const data = loadData();
   const index = data.exercises.findIndex(e => e.id === exercise.id);

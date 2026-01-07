@@ -30,6 +30,7 @@ export interface Routine {
   id: string;
   name: string;
   exerciseIds: string[]; // Array of exercise IDs in order
+  notes?: string;
 }
 
 export type ThemeMode = 'default' | 'sparkle' | 'minimal' | 'elegant' | 'light' | 'sunset' | 'ocean' | 'forest';

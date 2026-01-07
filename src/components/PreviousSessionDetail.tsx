@@ -1,5 +1,5 @@
-import React from 'react';
-import { getWorkouts, getExercises } from '../storage';
+import React, { useState, useEffect } from 'react';
+import { getWorkouts, getExercises, deleteWorkout } from '../storage';
 import { Workout } from '../types';
 import { formatLocalDate } from '../utils/dateFormat';
 // VIEW FOR A PREVIOUS SESSION.
@@ -9,9 +9,23 @@ interface Props {
 }
 
 const WorkoutDetail: React.FC<Props> = ({ workoutId, onBack }) => {
-  const workouts = getWorkouts();
+  const [workout, setWorkout] = useState<Workout | null>(null);
   const exercises = getExercises();
-  const workout = workouts.find(w => w.id === workoutId);
+
+  useEffect(() => {
+    const workouts = getWorkouts();
+    const found = workouts.find(w => w.id === workoutId);
+    setWorkout(found || null);
+  }, [workoutId]);
+
+  const handleDelete = () => {
+    if (!workout) return;
+    const dateStr = formatLocalDate(workout.date, { weekday: 'short', month: 'short', day: 'numeric' });
+    if (window.confirm(`Are you sure you want to delete the session from ${dateStr}? This cannot be undone.`)) {
+      deleteWorkout(workoutId);
+      onBack(); // Navigate back after deletion
+    }
+  };
 
   if (!workout) {
     return (
@@ -26,10 +40,40 @@ const WorkoutDetail: React.FC<Props> = ({ workoutId, onBack }) => {
 
   return (
     <div>
-      <div style={{ marginBottom: '24px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>
           {formatLocalDate(workout.date, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
         </h2>
+        <button
+          onClick={handleDelete}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: 'var(--text-secondary)',
+            cursor: 'pointer',
+            padding: '6px 8px',
+            width: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'color 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#ff453a';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--text-secondary)';
+          }}
+          title="Delete session"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </button>
       </div>
 
       {workout.notes && (
