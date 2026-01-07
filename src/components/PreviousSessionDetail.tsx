@@ -109,8 +109,11 @@ const WorkoutDetail: React.FC<Props> = ({ workoutId, onBack }) => {
                       Set {setIdx + 1}
                     </span>
                     <span style={{ fontWeight: '700', fontSize: '1rem' }}>
-                      {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? `${set.weight * 2}lbs ` : `${set.weight}lbs`}
-                      {set.isPerHand && <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span>}
+                      {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                        <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
+                      ) : (
+                        `${set.weight}lbs`
+                      )}
                     </span>
                   </div>
                 ))}

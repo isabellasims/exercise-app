@@ -32,7 +32,7 @@
     },
     {
       "id": "ex_6",
-      "name": "Sumo Squat",
+      "name": "Sumo squat",
       "cues": [],
       "defaultPerHand": false
     },
@@ -53,12 +53,57 @@
       "name": "Hip Abduction (Leaning Back)",
       "cues": [],
       "defaultPerHand": false
+    },
+    {
+      "id": "e83143ce-bf98-4bf4-bfe7-644bc24202a4",
+      "name": "Bulgarian Split Squat",
+      "cues": []
+    },
+    {
+      "id": "3b3d62a3-1356-43b8-abf6-ae65e95cde5b",
+      "name": "Cable Kickbacks (glute max)",
+      "cues": []
+    },
+    {
+      "id": "5753a467-5ae3-430d-bfc1-325d7e6602de",
+      "name": "Cable Kickbacks (glute med)",
+      "cues": []
+    },
+    {
+      "id": "104354f2-31c9-4cff-a64e-a3fed2edd3c4",
+      "name": "Hip Adductions",
+      "cues": []
     }
   ],
   "workouts": [
     {
+      "id": "ea473c46-dd0c-4682-92ed-009ae23efb2c",
+      "date": "2026-01-06",
+      "exercises": [
+        {
+          "exerciseId": "ex_2",
+          "sets": [
+            {
+              "id": "3bba5042-214b-4243-9147-48282e87b210",
+              "weight": 50,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1767749461269
+            },
+            {
+              "id": "09e3be2c-85bc-4b7e-b237-aa04877e5285",
+              "weight": 50,
+              "reps": 10,
+              "isPerHand": true,
+              "timestamp": 1767749490932
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "w_2025-04-02",
-      "date": "2025-04-02",
+      "date": "2025-04-02T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -116,7 +161,7 @@
     },
     {
       "id": "w_2025-04-07",
-      "date": "2025-04-07",
+      "date": "2025-04-07T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -174,7 +219,7 @@
     },
     {
       "id": "w_2025-04-14",
-      "date": "2025-04-14",
+      "date": "2025-04-14T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -251,7 +296,7 @@
     },
     {
       "id": "w_2025-04-21",
-      "date": "2025-04-21",
+      "date": "2025-04-21T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -321,7 +366,7 @@
     },
     {
       "id": "w_2025-05-12",
-      "date": "2025-05-12",
+      "date": "2025-05-12T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -405,7 +450,7 @@
     },
     {
       "id": "w_2025-05-19",
-      "date": "2025-05-19",
+      "date": "2025-05-19T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -489,7 +534,7 @@
     },
     {
       "id": "w_2025-05-26",
-      "date": "2025-05-26",
+      "date": "2025-05-26T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -566,7 +611,7 @@
     },
     {
       "id": "w_2025-06-02",
-      "date": "2025-06-02",
+      "date": "2025-06-02T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -599,7 +644,7 @@
     },
     {
       "id": "w_2025-06-09",
-      "date": "2025-06-09",
+      "date": "2025-06-09T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -676,7 +721,7 @@
     },
     {
       "id": "w_2025-06-16",
-      "date": "2025-06-16",
+      "date": "2025-06-16T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -734,7 +779,7 @@
     },
     {
       "id": "w_2025-06-24",
-      "date": "2025-06-24",
+      "date": "2025-06-24T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -766,7 +811,7 @@
     },
     {
       "id": "w_2025-07-01",
-      "date": "2025-07-01",
+      "date": "2025-07-01T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -799,7 +844,7 @@
     },
     {
       "id": "w_2025-07-07",
-      "date": "2025-07-07",
+      "date": "2025-07-07T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -831,7 +876,7 @@
     },
     {
       "id": "w_2025-07-21",
-      "date": "2025-07-21",
+      "date": "2025-07-21T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -863,7 +908,7 @@
     },
     {
       "id": "w_2025-07-28",
-      "date": "2025-07-28",
+      "date": "2025-07-28T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -908,7 +953,7 @@
     },
     {
       "id": "w_2025-08-01",
-      "date": "2025-08-01",
+      "date": "2025-08-01T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -940,7 +985,7 @@
     },
     {
       "id": "w_2025-08-27",
-      "date": "2025-08-27",
+      "date": "2025-08-27T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -973,7 +1018,7 @@
     },
     {
       "id": "w_2025-09-01",
-      "date": "2025-09-01",
+      "date": "2025-09-01T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -1031,7 +1076,7 @@
     },
     {
       "id": "w_2025-09-08",
-      "date": "2025-09-08",
+      "date": "2025-09-08T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1063,7 +1108,7 @@
     },
     {
       "id": "w_2025-09-10",
-      "date": "2025-09-10",
+      "date": "2025-09-10T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1095,7 +1140,7 @@
     },
     {
       "id": "w_2025-09-24",
-      "date": "2025-09-24",
+      "date": "2025-09-24T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_7",
@@ -1127,7 +1172,7 @@
     },
     {
       "id": "w_2025-10-29",
-      "date": "2025-10-29",
+      "date": "2025-10-29T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1186,7 +1231,7 @@
     },
     {
       "id": "w_2025-11-04",
-      "date": "2025-11-04",
+      "date": "2025-11-04T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_5",
@@ -1316,7 +1361,7 @@
     },
     {
       "id": "w_2025-11-10",
-      "date": "2025-11-10",
+      "date": "2025-11-10T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1460,7 +1505,7 @@
     },
     {
       "id": "w_2025-11-14",
-      "date": "2025-11-14",
+      "date": "2025-11-14T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1519,7 +1564,7 @@
     },
     {
       "id": "w_2025-11-17",
-      "date": "2025-11-17",
+      "date": "2025-11-17T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_1",
@@ -1656,7 +1701,7 @@
     },
     {
       "id": "w_2025-11-21",
-      "date": "2025-11-21",
+      "date": "2025-11-21T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1715,7 +1760,7 @@
     },
     {
       "id": "w_2025-12-03",
-      "date": "2025-12-03",
+      "date": "2025-12-03T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1800,7 +1845,7 @@
     },
     {
       "id": "w_2025-12-07",
-      "date": "2025-12-07",
+      "date": "2025-12-07T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_5",
@@ -1865,7 +1910,7 @@
     },
     {
       "id": "w_2025-12-10",
-      "date": "2025-12-10",
+      "date": "2025-12-10T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_5",
@@ -1961,7 +2006,7 @@
     },
     {
       "id": "w_2025-12-13",
-      "date": "2025-12-13",
+      "date": "2025-12-13T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -1993,7 +2038,7 @@
     },
     {
       "id": "w_2025-12-15",
-      "date": "2025-12-15",
+      "date": "2025-12-15T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -2123,7 +2168,7 @@
     },
     {
       "id": "w_2025-12-17",
-      "date": "2025-12-17",
+      "date": "2025-12-17T00:00:00.000Z",
       "exercises": [
         {
           "exerciseId": "ex_2",
@@ -2203,5 +2248,54 @@
   "settings": {
     "preferredUnit": "lb",
     "theme": "default"
-  }
+  },
+  "routines": [
+    {
+      "id": "9e0a6db5-39c1-4a4d-bcc9-909d7455ac46",
+      "name": "Monday A",
+      "exerciseIds": [
+        "ex_2",
+        "ex_5",
+        "ex_1",
+        "3b3d62a3-1356-43b8-abf6-ae65e95cde5b",
+        "5753a467-5ae3-430d-bfc1-325d7e6602de",
+        "ex_7"
+      ],
+      "notes": "1. RDLs 3 x (8-12) and or Hip Thrusts 3 x (8-12)\n- Do at least one. Preferably hip thrusts\n2. BACK EXTENSIONS 3 x (12-20) OR Bulgarian split squats 3 x (10-12) OR Sumo Squats 3 x (10-12) \n3. Reverse Lunges 2-3 x (8-10 / side) or CABLE KICKBACKS (glute max) 2-3 x (12-20 / side)\n4. Hip abductions (fwd lean) 3 x (10-15) and/or Cable Kickbacks (glute med) 2-3 x (12-20 / side)"
+    },
+    {
+      "id": "c0caeabc-9b2b-4aa6-8217-6d5adc5e3957",
+      "name": "Monday B",
+      "exerciseIds": [
+        "ex_5",
+        "ex_7",
+        "104354f2-31c9-4cff-a64e-a3fed2edd3c4"
+      ],
+      "notes": "* A few heavy lifts after long, high-rep class work \n* NOTE - sometimes ass & abs class is hit or miss. Sometimes it's not very good. If glutes were hit hard, reduce weight and increase rep ranges to 8-12 for RDLs & 15-25 for hip abductions. Otherwise, the ass & abs class would have mostly served as a warm-up. Since we don't have much time after the class, go heavy for the RDLs & have one heavy abduction day here. \n1. RDLs 3 x (6-10)\n2. Hip abductions (fwd lean) 3 x (10-15)\n3. Hip adductions"
+    },
+    {
+      "id": "30a87f3a-8c12-4332-bfac-56b795be3468",
+      "name": "Wednesday (Heavy Hip Thrust)",
+      "exerciseIds": [
+        "ex_2",
+        "3b3d62a3-1356-43b8-abf6-ae65e95cde5b",
+        "5753a467-5ae3-430d-bfc1-325d7e6602de",
+        "ex_1",
+        "104354f2-31c9-4cff-a64e-a3fed2edd3c4"
+      ],
+      "notes": "1. Hip Thrusts 4 x (6-10)\n2. Cable Kickbacks (Glute Max Bias) 2-3 x (15-20 / side)\n- sub reverse lunges 3 x (6-10)\n- sub back extension \n- sub Single-leg Hip Thrusts 2-3 x 10-15/side\n3. Cable Kickbacks (Glute Med Bias) 2-3 x (15-20 / side)\n- sub back leaning hip abductions\n4. Hip Abductions (fwd lean) 2-3 x (15 - 20)"
+    },
+    {
+      "id": "2d6cf8a6-0c01-4bfb-8876-3c75634c4d1f",
+      "name": "Friday",
+      "exerciseIds": [
+        "ex_5",
+        "ex_1",
+        "ex_3",
+        "ex_7",
+        "104354f2-31c9-4cff-a64e-a3fed2edd3c4"
+      ],
+      "notes": "1. RDLs 3 x (6-12) OR back extensions 3 x (12-20)\n- Only choose back extensions if already had heavy RDL day\n- If back extensions instead of RDL pick one [optional] extra: -- hip thrusts 3 x 8-12 OR \n-- Single-leg Hip Thrusts 2-3 x 10-15/side OR \n-- Single-leg Glute Bridge \n2. Step-ups (glute biased) 3 x (8-10/side)\n3. Hip Abductions (fwd lean) 3 x (15 - 20)\n4. [optional] Hip adductions"
+    }
+  ]
 }

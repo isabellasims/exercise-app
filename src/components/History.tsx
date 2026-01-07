@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getWorkouts, getExercises, deleteWorkout } from '../storage';
+import React, { useState, useEffect, useMemo } from 'react';
+import { getWorkouts, getExercises, deleteWorkout, getWorkoutHistoryForExercise } from '../storage';
 import { Workout } from '../types';
 import { formatLocalDate } from '../utils/dateFormat';
 // ALL HISTORY VIEW. SHOWS ALL COMPLETED SESSIONS.
-// TODO - ADD FILTERS FOR DATE RANGE AND EXERCISE. IF A SPECIFICC EXERCISE IS SELECTED, ONLY SHOW HISTORY OF THAT EXERCISE. DO NOT SHOW FULL SESSION. CAN REUSE WORKOUT HISTORY VIEW FOR THIS.
 interface Props {
   onBack: () => void;
   onViewWorkout: (workoutId: string) => void;
@@ -11,6 +10,9 @@ interface Props {
 
 const History: React.FC<Props> = ({ onBack, onViewWorkout }) => {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [selectedExerciseId, setSelectedExerciseId] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
   const exercises = getExercises();
 
   const refreshWorkouts = () => {
@@ -24,6 +26,32 @@ const History: React.FC<Props> = ({ onBack, onViewWorkout }) => {
   useEffect(() => {
     refreshWorkouts();
   }, []);
+
+  // Filter workouts based on selected filters
+  const filteredWorkouts = useMemo(() => {
+    let filtered = workouts;
+
+    // Filter by date range
+    if (startDate) {
+      filtered = filtered.filter(w => w.date >= startDate);
+    }
+    if (endDate) {
+      filtered = filtered.filter(w => w.date <= endDate);
+    }
+
+    return filtered;
+  }, [workouts, startDate, endDate]);
+
+  // Get exercise history if an exercise is selected
+  const exerciseHistory = useMemo(() => {
+    if (!selectedExerciseId) return null;
+    return getWorkoutHistoryForExercise(selectedExerciseId)
+      .filter(session => {
+        if (startDate && session.date < startDate) return false;
+        if (endDate && session.date > endDate) return false;
+        return true;
+      });
+  }, [selectedExerciseId, startDate, endDate]);
 
   const handleDelete = (workoutId: string, e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent navigation when clicking delete
@@ -41,13 +69,137 @@ const History: React.FC<Props> = ({ onBack, onViewWorkout }) => {
         <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Workout History</h2>
       </div>
 
-      {workouts.length === 0 ? (
-        <div className="card" style={{ padding: '40px 20px', textAlign: 'center', borderStyle: 'dashed' }}>
-          <div className="muted">No workout history yet.</div>
-        </div>
-      ) : (
+      {/* Filters */}
+      <div className="card" style={{ marginBottom: '20px', padding: '16px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {workouts.map((workout) => (
+          <div>
+            <label style={{ display: 'block', marginBottom: '6px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '500' }}>
+              Filter by Exercise
+            </label>
+            <select
+              value={selectedExerciseId}
+              onChange={(e) => setSelectedExerciseId(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '8px 12px',
+                background: 'var(--card-bg)',
+                border: '1px solid var(--border)',
+                borderRadius: '8px',
+                color: 'var(--text-primary)',
+                fontSize: '0.9rem'
+              }}
+            >
+              <option value="">All Exercises</option>
+              {exercises.map(ex => (
+                <option key={ex.id} value={ex.id}>{ex.name}</option>
+              ))}
+            </select>
+          </div>
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '500' }}>
+                Start Date
+              </label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '8px 12px',
+                  background: 'var(--card-bg)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '8px',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.9rem'
+                }}
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '500' }}>
+                End Date
+              </label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '8px 12px',
+                  background: 'var(--card-bg)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '8px',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.9rem'
+                }}
+              />
+            </div>
+          </div>
+          {(selectedExerciseId || startDate || endDate) && (
+            <button
+              onClick={() => {
+                setSelectedExerciseId('');
+                setStartDate('');
+                setEndDate('');
+              }}
+              className="secondary"
+              style={{ width: 'auto', alignSelf: 'flex-start', padding: '6px 12px', fontSize: '0.85rem' }}
+            >
+              Clear Filters
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Exercise-specific history view */}
+      {selectedExerciseId && exerciseHistory && (
+        <div style={{ marginBottom: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '16px' }}>
+            {exercises.find(e => e.id === selectedExerciseId)?.name || 'Exercise'} History
+          </h3>
+          {exerciseHistory.length === 0 ? (
+            <div className="card" style={{ padding: '40px 20px', textAlign: 'center', borderStyle: 'dashed' }}>
+              <div className="muted">No history for this exercise in the selected date range.</div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {exerciseHistory.map((session, idx) => (
+                <div key={idx} className="card" style={{ padding: '16px' }}>
+                  <div style={{ marginBottom: '12px' }}>
+                    <span style={{ fontWeight: '600', fontSize: '1rem', color: 'var(--accent)' }}>
+                      {formatLocalDate(session.date, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {session.sets.map((set, setIdx) => (
+                      <div key={setIdx} style={{ fontSize: '0.9rem' }}>
+                        <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
+                          Set {setIdx + 1}: {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                            <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
+                          ) : (
+                            `${set.weight}lbs`
+                          )}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Full workout sessions view (when no exercise is selected) */}
+      {!selectedExerciseId && (
+        <>
+          {filteredWorkouts.length === 0 ? (
+            <div className="card" style={{ padding: '40px 20px', textAlign: 'center', borderStyle: 'dashed' }}>
+              <div className="muted">No workout history {startDate || endDate ? 'in the selected date range' : 'yet'}.</div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {filteredWorkouts.map((workout) => (
             <div
               key={workout.id}
               className="card"
@@ -124,6 +276,8 @@ const History: React.FC<Props> = ({ onBack, onViewWorkout }) => {
             </div>
           ))}
         </div>
+          )}
+        </>
       )}
     </div>
   );

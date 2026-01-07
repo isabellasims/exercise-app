@@ -3,8 +3,6 @@ import { getExercises, getWorkoutHistoryForExercise, addWorkout, updateExercise,
 import { getRecommendation } from '../utils/progression';
 import { Exercise, LiftSet, Workout } from '../types';
 import { formatLocalDate, getTodayDateString } from '../utils/dateFormat';
-// TODO - HISTORY DEFAULT VIEW SHOULD BE THE SEE ALL VIEW.
-// TODO CLICKING THE SEE ALL VIEW SHOULD TAKE YOU TO A VIEW SIMILAR TO THE HISTORY VIEW. JUST FOR THAT SPECIFIC EXERCISE.
 interface Props {
   exerciseId: string;
   onFinish: () => void;
@@ -27,7 +25,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
   const [isEditingCues, setIsEditingCues] = useState(false);
   const [newCue, setNewCue] = useState('');
   const [hasInitialized, setHasInitialized] = useState(false);
-  const [showAllHistory, setShowAllHistory] = useState(false);
+  const [showAllHistory, setShowAllHistory] = useState(true);
   const [selectedDate, setSelectedDate] = useState<string>(getTodayDateString());
 
   // Memoize recommendation to avoid unnecessary re-renders/resets
@@ -48,7 +46,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
     setSets([]);
     setCurrentWeight('');
     setCurrentReps('');
-    setShowAllHistory(false); // Reset history view when switching exercises
+    setShowAllHistory(true); // Default to showing all history when switching exercises
     setSelectedDate(getTodayDateString()); // Reset to today when switching exercises
   }, [exerciseId]);
 
@@ -119,13 +117,7 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
       }
     }
     
-    // Clear weight, keep reps for next set if recommendation exists
-    setCurrentWeight('');
-    if (recommendation && sets.length + 1 < recommendation.sets.length) {
-      setCurrentReps(recommendation.sets[sets.length + 1].reps.toString());
-    } else {
-      setCurrentReps('');
-    }
+    // Keep weight and reps for next set (don't clear)
   };
 
   const handleAddCue = () => {
@@ -185,7 +177,13 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
             <span className="muted" style={{ fontSize: '0.7rem' }}>Based on last session</span>
           </div>
           <div style={{ fontSize: '1.3rem', fontWeight: '800', marginBottom: '4px', lineHeight: '1.3' }}>
-            {recommendation.sets.map(s => s.reps).join(', ')} <span style={{ fontWeight: '400', fontSize: '1rem', color: 'rgba(255,255,255,0.7)' }}>reps @</span> {recommendation.sets[0].weight}lbs
+            {recommendation.sets.map(s => s.reps).join(', ')} <span style={{ fontWeight: '400', fontSize: '1rem', color: 'rgba(255,255,255,0.7)' }}>reps @</span> {exercise.defaultPerHand ? (
+              <>
+                {recommendation.sets[0].weight * 2}lbs <span style={{ fontWeight: '400', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>({recommendation.sets[0].weight}x2)</span>
+              </>
+            ) : (
+              `${recommendation.sets[0].weight}lbs`
+            )}
           </div>
         </div>
       )}
@@ -369,39 +367,78 @@ const WorkoutLogger: React.FC<Props> = ({ exerciseId, onFinish, onBack }) => {
               </span>
             )}
           </div>
-          <div className="card" style={{ background: 'transparent', border: 'none', padding: '0' }}>
-            <div style={{ display: 'flex', gap: '16px', overflowX: showAllHistory ? 'auto' : 'hidden', paddingBottom: '12px', scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
-              {(showAllHistory ? history : [history[0]]).map((session, sIdx) => (
-                <div key={sIdx} style={{ 
-                  padding: '16px', 
-                  background: 'linear-gradient(135deg, var(--card-bg) 0%, #252528 100%)', 
-                  borderRadius: '16px', 
-                  border: '1px solid var(--border)', 
-                  minWidth: '160px', 
-                  scrollSnapAlign: 'start',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-                }}>
-                  <div className="muted" style={{ fontSize: '0.75rem', marginBottom: '12px', fontWeight: '500' }}>
-                    {formatLocalDate(session.date, { month: 'short', day: 'numeric' })}
+          {showAllHistory ? (
+            // Detailed history view (similar to History component)
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {history.map((session, sIdx) => (
+                <div key={sIdx} className="card" style={{ padding: '16px' }}>
+                  <div style={{ marginBottom: '12px' }}>
+                    <span style={{ fontWeight: '600', fontSize: '1rem', color: 'var(--accent)' }}>
+                      {formatLocalDate(session.date, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                    </span>
                   </div>
-                  {session.sets.map((set, i) => (
-                    <div key={i} style={{ fontSize: '0.9rem', marginBottom: '8px', lineHeight: '1.4' }}>
-                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-                        <span style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', fontWeight: '600' }}>Set {i+1}</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {session.sets.map((set, i) => (
+                      <div key={i} style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        padding: '8px 12px',
+                        background: '#2c2c2e',
+                        borderRadius: '8px'
+                      }}>
+                        <span style={{ fontWeight: '600', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                          Set {i + 1}
+                        </span>
+                        <span style={{ fontWeight: '700', fontSize: '0.95rem' }}>
+                          {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                            <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
+                          ) : (
+                            `${set.weight}lbs`
+                          )}
+                        </span>
                       </div>
-                      <div style={{ fontWeight: '600', marginTop: '2px', color: 'var(--text-primary)' }}>
-                        {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
-                          <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
-                        ) : (
-                          `${set.weight}lbs`
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
+          ) : (
+            // Compact horizontal scroll view
+            <div className="card" style={{ background: 'transparent', border: 'none', padding: '0' }}>
+              <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '12px', scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
+                {[history[0]].map((session, sIdx) => (
+                  <div key={sIdx} style={{ 
+                    padding: '16px', 
+                    background: 'linear-gradient(135deg, var(--card-bg) 0%, #252528 100%)', 
+                    borderRadius: '16px', 
+                    border: '1px solid var(--border)', 
+                    minWidth: '160px', 
+                    scrollSnapAlign: 'start',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                  }}>
+                    <div className="muted" style={{ fontSize: '0.75rem', marginBottom: '12px', fontWeight: '500' }}>
+                      {formatLocalDate(session.date, { month: 'short', day: 'numeric' })}
+                    </div>
+                    {session.sets.map((set, i) => (
+                      <div key={i} style={{ fontSize: '0.9rem', marginBottom: '8px', lineHeight: '1.4' }}>
+                        <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                          <span style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', fontWeight: '600' }}>Set {i+1}</span>
+                        </div>
+                        <div style={{ fontWeight: '600', marginTop: '2px', color: 'var(--text-primary)' }}>
+                          {set.reps} <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>reps @</span> {set.isPerHand ? (
+                            <>{set.weight * 2}lbs <span style={{ fontWeight: '400', color: 'var(--text-secondary)' }}>({set.weight}lbs x2)</span></>
+                          ) : (
+                            `${set.weight}lbs`
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

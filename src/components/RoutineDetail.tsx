@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getRoutines, getExercises, updateRoutine, deleteRoutine } from '../storage';
 import { Routine } from '../types';
 // VIEW FOR A SPECIFIC ROUTINE. ALLOWS EDIT, DELETE, AND START WORKOUT.
-// TODO - BACK BUTTON SHOULD ALWAYS NAVIGATE TO ROUTINES VIEW.
 interface Props {
   routineId: string;
   onBack: () => void;
